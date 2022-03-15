@@ -14,7 +14,7 @@ declare function addEventListener(
     once?: boolean;
     passive?: boolean;
   }
-);
+): void;
 addEventListener("foobar", () => {});
 addEventListener("event", () => {}, true);
 addEventListener("event2", () => {}, {});
@@ -30,3 +30,15 @@ addEventListener("event3", () => {}, {
 //   once: false,
 //   excess: true
 // });
+
+// 別解（解答記事より）
+interface AddEventListenerOptionsObject {
+  capture?: boolean;
+  once?: boolean;
+  passive?: boolean;
+}
+declare function addEventListener(
+  type: string,
+  handler: () => void,
+  options?: boolean | AddEventListenerOptionsObject
+): void;
